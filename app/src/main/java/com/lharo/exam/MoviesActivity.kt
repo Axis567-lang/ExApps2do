@@ -10,6 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlin.properties.Delegates
 
 class MoviesActivity : AppCompatActivity() {
+
+    val applications = ArrayList<MovieModel>()
+
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
@@ -38,7 +41,7 @@ class MoviesActivity : AppCompatActivity() {
             movie.imdbVotes = imdbVotes[i]
             movies.add(movie)
 
-
+            applications.add(movie)
         }
     }
 
@@ -46,6 +49,7 @@ class MoviesActivity : AppCompatActivity() {
     {
         private class ViewData(context: Context, recyclerView: RecyclerView) : AsyncTask<String, Void, String>()
         {
+
             var localContext: Context by Delegates.notNull()
             var localRecyclerView: RecyclerView by Delegates.notNull()
 
@@ -57,7 +61,7 @@ class MoviesActivity : AppCompatActivity() {
 
             override fun doInBackground(vararg p0: String?): String
             {
-                //n0
+                TODO()
             }
 
             override fun onPostExecute(result: String)
@@ -66,7 +70,7 @@ class MoviesActivity : AppCompatActivity() {
                 //Log.d(TAG, "onPostExecute")
 
                 //      ADAPTER
-                val adapter: ApplicationsAdapter = ApplicationsAdapter(localContext, movie.applications)
+                val adapter: ApplicationsAdapter = ApplicationsAdapter(localContext, MoviesActivity().applications)
                 localRecyclerView.adapter = adapter
                 localRecyclerView.layoutManager = LinearLayoutManager(localContext)
             }
